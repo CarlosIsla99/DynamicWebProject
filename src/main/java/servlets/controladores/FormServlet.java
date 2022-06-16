@@ -22,12 +22,16 @@ public class FormServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String id = request.getParameter("id");
+		String accion = "Añadir";
 		
 		if (id != null) {
 			Coche coche = DAO.obtenerPorId(Long.parseLong(id));
+			accion = "Editar";
+			
 			request.setAttribute("coche", coche);
 		}
 
+		request.setAttribute("accion", accion);
 		request.getRequestDispatcher("/WEB-INF/vistas/formulario.jsp").forward(request, response);
 			
 	}

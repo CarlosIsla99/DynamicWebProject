@@ -11,13 +11,13 @@ import servlets.modelos.Coche;
 
 import java.io.IOException;
 
-@WebServlet("/insertar")
-public class InsertarServlet extends HttpServlet {
+@WebServlet("/insertarEditar")
+public class InsertarEditarServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private static final DaoCoche DAO = DaoCocheMemoria.getInstancia();
 	
-    public InsertarServlet() {}
+    public InsertarEditarServlet() {}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
