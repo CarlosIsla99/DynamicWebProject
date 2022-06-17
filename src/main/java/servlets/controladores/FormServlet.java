@@ -37,7 +37,26 @@ public class FormServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		
+		String id = request.getParameter("id");
+		String matricula = request.getParameter("matricula");
+		String marca = request.getParameter("marca");
+		String modelo = request.getParameter("modelo");
+		String color = request.getParameter("color");
+		int potencia = Integer.parseInt(request.getParameter("potencia"));
+		int cilindrada = Integer.parseInt(request.getParameter("cilindrada"));
+		
+		Coche coche = new Coche(null, matricula, marca, modelo, color, potencia, cilindrada);
+		
+		if(id == null || id.trim().length() == 0) {
+			DAO.insertar(coche);
+		} else {
+			coche.setId(Long.parseLong(id));
+			DAO.modificar(coche);
+		}
+		
+		response.sendRedirect(request.getContextPath() + "/coches");
+		
 	}
 
 }

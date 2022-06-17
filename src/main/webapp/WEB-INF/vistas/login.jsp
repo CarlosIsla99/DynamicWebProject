@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8" import="servlets.modelos.Coche"%>
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp" %>
 
-	<form style="margin-left: 32rem" class="mt-5" action="login" method="POST">
+	<form style="margin-left: 34.3rem" class="mt-5" action="login" method="POST">
 		<div class="form-group col-4">
 			<label for="exampleInputEmail1">Email</label>
 			<input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> 

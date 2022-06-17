@@ -14,8 +14,7 @@ public class DaoUsuarioMemoria implements DaoUsuario {
 	}
 
 	// SINGLETON
-	private DaoUsuarioMemoria() {
-	}
+	private DaoUsuarioMemoria() {}
 
 	private static final DaoUsuarioMemoria INSTANCIA = new DaoUsuarioMemoria();
 

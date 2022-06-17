@@ -4,7 +4,7 @@
 
 <h1 class="text-center my-3">${accion} coche</h1>
 
-<form class="text-center" name="insertForm" method="POST" action="insertarEditar">
+<form class="text-center" method="POST" action="formulario">
   <div class="form-row justify-content-center">
   
     <div class="col-5 mt-2">

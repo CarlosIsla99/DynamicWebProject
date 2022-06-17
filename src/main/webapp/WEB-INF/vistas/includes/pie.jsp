@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script src="https://kit.fontawesome.com/e6a50891da.js"></script>
-<footer class="bg-dark text-center text-white fixed-bottom mt-5">
+<footer class="bg-dark text-center text-white mt-5">
   <!-- Grid container -->
   <div class="container p-4 pb-0">
     <!-- Section: Social media -->

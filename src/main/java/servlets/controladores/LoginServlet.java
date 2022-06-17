@@ -2,8 +2,6 @@ package servlets.controladores;
 
 import java.io.IOException;
 
-import servlets.dal.DaoCoche;
-import servlets.dal.DaoCocheMemoria;
 import servlets.dal.DaoUsuario;
 import servlets.dal.DaoUsuarioMemoria;
 import servlets.modelos.Usuario;
@@ -16,12 +14,11 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	
-	private static final String LOGIN_JSP = "/WEB-INF/vistas/login.jsp";
 	private static final DaoUsuario DAO = DaoUsuarioMemoria.getInstancia();
 	private static final long serialVersionUID = 1587748451045724579L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher(LOGIN_JSP).forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/vistas/login.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,7 +35,7 @@ public class LoginServlet extends HttpServlet {
 		} else {
 			request.setAttribute("error", "Email o contraseña incorrectos");
 			request.setAttribute("usuario", usuario);
-			request.getRequestDispatcher(LOGIN_JSP).forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/vistas/login.jsp").forward(request, response);
 		}
 	}
 
