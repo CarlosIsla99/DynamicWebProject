@@ -10,7 +10,7 @@ import servlets.dal.DaoCocheMemoria;
 
 import java.io.IOException;
 
-@WebServlet("/coches")
+@WebServlet("/admin/coches")
 public class CochesServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;

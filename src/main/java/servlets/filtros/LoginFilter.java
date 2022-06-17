@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import servlets.modelos.Usuario;
 
-@WebFilter("/coches")
+@WebFilter("/admin/*")
 public class LoginFilter extends HttpFilter {
 
 	private static final long serialVersionUID = 3132045944508153674L;

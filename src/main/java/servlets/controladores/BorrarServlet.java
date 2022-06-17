@@ -10,7 +10,7 @@ import servlets.dal.DaoCocheMemoria;
 
 import java.io.IOException;
 
-@WebServlet("/borrar")
+@WebServlet("/admin/borrar")
 public class BorrarServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -24,7 +24,7 @@ public class BorrarServlet extends HttpServlet {
 		
 		DAO.borrar(id);
 		
-		response.sendRedirect(request.getContextPath() + "/coches");
+		response.sendRedirect(request.getContextPath() + "/admin/coches");
 			
 	}
 

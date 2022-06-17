@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
 		
 		if(usuarioValidado != null) {
 			request.getSession().setAttribute("usuario", usuarioValidado);
-			response.sendRedirect(request.getContextPath() + "/coches");
+			response.sendRedirect(request.getContextPath() + "/admin/coches");
 		} else {
 			request.setAttribute("error", "Email o contraseña incorrectos");
 			request.setAttribute("usuario", usuario);

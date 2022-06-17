@@ -11,7 +11,7 @@ import servlets.modelos.Coche;
 
 import java.io.IOException;
 
-@WebServlet("/coche")
+@WebServlet("/admin/coche")
 public class CocheServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;

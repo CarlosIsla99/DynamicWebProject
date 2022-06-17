@@ -11,7 +11,7 @@ import servlets.modelos.Coche;
 
 import java.io.IOException;
 
-@WebServlet("/formulario")
+@WebServlet("/admin/formulario")
 public class FormServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -55,7 +55,7 @@ public class FormServlet extends HttpServlet {
 			DAO.modificar(coche);
 		}
 		
-		response.sendRedirect(request.getContextPath() + "/coches");
+		response.sendRedirect(request.getContextPath() + "/admin/coches");
 		
 	}
 
