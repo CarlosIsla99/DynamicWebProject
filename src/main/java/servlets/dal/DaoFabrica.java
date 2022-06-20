@@ -3,25 +3,25 @@ package servlets.dal;
 // El objetivo de esta fábrica es crear objetos de DAOs específicos (memoria, mysql, oracle)
 // Tendrá métodos getDaoEntidad()
 public class DaoFabrica {
-	private DaoUsuario daoUsuario;
+	private DaoCoche daoCoche;
 	
 	// Esta fábrica concretamente genera sólo un objeto de DAO por cada entidad
 	// Con ello está creando el objeto como si fuera un Singleton
 	public DaoFabrica(String tipoDao) {
 		switch(tipoDao) {
 		case "memoria":
-			daoUsuario = DaoUsuarioMemoria.getInstancia();
+			daoCoche = DaoCocheMemoria.getInstancia();
 			break;
-		case "excepcion":
-			daoUsuario = new DaoUsuarioExcepcion();
-			break;
+	//	case "excepcion":
+	//		daoCoche = new DaoCocheExcepcion();
+	//		break;
 		default:
 			throw new DalException("No conozco ese tipo " + tipoDao);
 		}
 	}
 	
 	// Como no se hace un new en cada get, siempre devuelve el mismo objeto
-	public DaoUsuario getDaoUsuario() {
-		return daoUsuario;
+	public DaoCoche getDaoCoche() {
+		return daoCoche;
 	}
 }

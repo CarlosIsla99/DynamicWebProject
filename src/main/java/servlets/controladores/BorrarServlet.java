@@ -5,8 +5,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import servlets.dal.DaoCoche;
-import servlets.dal.DaoCocheMemoria;
 
 import java.io.IOException;
 
@@ -14,7 +12,6 @@ import java.io.IOException;
 public class BorrarServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private static final DaoCoche DAO = DaoCocheMemoria.getInstancia();
 
     public BorrarServlet() {}
 
@@ -22,7 +19,7 @@ public class BorrarServlet extends HttpServlet {
 		
 		Long id = Long.parseLong(request.getParameter("id"));
 		
-		DAO.borrar(id);
+		Globales.DAO.borrar(id);
 		
 		response.sendRedirect(request.getContextPath() + "/admin/coches");
 			

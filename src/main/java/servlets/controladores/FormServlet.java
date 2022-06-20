@@ -5,8 +5,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import servlets.dal.DaoCoche;
-import servlets.dal.DaoCocheMemoria;
 import servlets.modelos.Coche;
 
 import java.io.IOException;
@@ -15,7 +13,6 @@ import java.io.IOException;
 public class FormServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private static final DaoCoche DAO = DaoCocheMemoria.getInstancia();
 
     public FormServlet() {}
 
@@ -25,7 +22,7 @@ public class FormServlet extends HttpServlet {
 		String accion = "Añadir";
 		
 		if (id != null) {
-			Coche coche = DAO.obtenerPorId(Long.parseLong(id));
+			Coche coche = Globales.DAO.obtenerPorId(Long.parseLong(id));
 			accion = "Editar";
 			
 			request.setAttribute("coche", coche);
@@ -49,10 +46,10 @@ public class FormServlet extends HttpServlet {
 		Coche coche = new Coche(null, matricula, marca, modelo, color, potencia, cilindrada);
 		
 		if(id == null || id.trim().length() == 0) {
-			DAO.insertar(coche);
+			Globales.DAO.insertar(coche);
 		} else {
 			coche.setId(Long.parseLong(id));
-			DAO.modificar(coche);
+			Globales.DAO.modificar(coche);
 		}
 		
 		response.sendRedirect(request.getContextPath() + "/admin/coches");
