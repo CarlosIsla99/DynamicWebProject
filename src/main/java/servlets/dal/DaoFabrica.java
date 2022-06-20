@@ -12,9 +12,9 @@ public class DaoFabrica {
 		case "memoria":
 			daoCoche = DaoCocheMemoria.getInstancia();
 			break;
-	//	case "excepcion":
-	//		daoCoche = new DaoCocheExcepcion();
-	//		break;
+		case "excepcion":
+			daoCoche = new DaoCocheExcepcion();
+			break;
 		default:
 			throw new DalException("No conozco ese tipo " + tipoDao);
 		}
