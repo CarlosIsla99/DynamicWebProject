@@ -25,4 +25,7 @@
     </tr>
   </tbody>
 </table>
+<div class="text-center">
+	<a href="admin/coches" type="button" class="btn btn-primary text-center mt-3">Volver</a>
+</div>
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp" %>

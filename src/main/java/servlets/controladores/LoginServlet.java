@@ -34,6 +34,7 @@ public class LoginServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/admin/coches");
 		} else {
 			request.setAttribute("error", "Email o contraseña incorrectos");
+			request.setAttribute("alertanivel", "danger");
 			request.setAttribute("usuario", usuario);
 			request.getRequestDispatcher("/WEB-INF/vistas/login.jsp").forward(request, response);
 		}

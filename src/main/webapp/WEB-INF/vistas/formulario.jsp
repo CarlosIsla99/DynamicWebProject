@@ -4,8 +4,8 @@
 
 <h1 class="text-center my-3">${accion} coche</h1>
 
-<form class="text-center" autocomplete="off" method="POST" action="formulario">
-  <div class="form-row justify-content-center">
+<form class="text-center" autocomplete="off" method="POST" action="admin/formulario">
+  <div class="form-row row justify-content-center">
   
     <div class="col-5 mt-2">
     <label>Matricula</label>

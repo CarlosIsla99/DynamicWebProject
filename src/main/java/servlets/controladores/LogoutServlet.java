@@ -1,31 +1,21 @@
 package servlets.controladores;
 
+import java.io.IOException;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.io.IOException;
-
-@WebServlet("/admin/borrar")
-public class BorrarServlet extends HttpServlet {
-	
-	private static final long serialVersionUID = 1L;
-
-    public BorrarServlet() {}
+@WebServlet("/logout")
+public class LogoutServlet extends HttpServlet {
+	private static final long serialVersionUID = 1587748451045724579L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().invalidate();
 		
-		Long id = Long.parseLong(request.getParameter("id"));
-		
-		Globales.DAO.borrar(id);
-		
-		request.setAttribute("alertatexto", "Se ha borrado el registro " + id + " correctamente");
-		request.setAttribute("alertanivel", "success");
-		
-		request.getRequestDispatcher("/admin/coches").forward(request, response);
-			
+		response.sendRedirect(request.getContextPath() + "/login");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

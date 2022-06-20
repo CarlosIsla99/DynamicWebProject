@@ -43,16 +43,29 @@ public class FormServlet extends HttpServlet {
 		int potencia = Integer.parseInt(request.getParameter("potencia"));
 		int cilindrada = Integer.parseInt(request.getParameter("cilindrada"));
 		
+		String accion = "";
+		
 		Coche coche = new Coche(null, matricula, marca, modelo, color, potencia, cilindrada);
 		
-		if(id == null || id.trim().length() == 0) {
-			Globales.DAO.insertar(coche);
-		} else {
-			coche.setId(Long.parseLong(id));
-			Globales.DAO.modificar(coche);
+		try {
+			if(id == null || id.trim().length() == 0) {
+				Globales.DAO.insertar(coche);
+				accion = "añadido";
+			} else {
+				coche.setId(Long.parseLong(id));
+				Globales.DAO.modificar(coche);
+				accion = "modificado";
+			}
+			
+			request.setAttribute("alertatexto", "Se ha " + accion + " el registro correctamente");
+			request.setAttribute("alertanivel", "success");
+			
+		} catch (Exception e) {
+			request.setAttribute("alertatexto", "La opción de " + accion + " no ha funcionado");
+			request.setAttribute("alertanivel", "danger");
 		}
-		
-		response.sendRedirect(request.getContextPath() + "/admin/coches");
+			
+		request.getRequestDispatcher("/admin/coches").forward(request, response);
 		
 	}
 

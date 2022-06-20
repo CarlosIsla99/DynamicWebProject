@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="servlets.modelos.Coche"%>
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp" %>
 
-<h1 class="text-center my-3">Todos los coches</h1>
+<h1 class="text-center mb-5">Todos los coches</h1>
 <table class="table table-dark table-hover text-center">
   <thead>
     <tr>
@@ -27,15 +27,15 @@
       <td>${coche.potencia}</td>
       <td>${coche.cilindrada}</td>
       <td>
-      	<a href="coche?id=${coche.id}" type="button" class="btn btn-secondary">Ver</a>
-     	<a href="formulario?id=${coche.id}" type="button" class="btn btn-primary">Editar</a>
-      	<a href="borrar?id=${coche.id}" type="button" class="btn btn-danger">Borrar</a>
+      	<a href="admin/coche?id=${coche.id}" type="button" class="btn btn-secondary">Ver</a>
+     	<a href="admin/formulario?id=${coche.id}" type="button" class="btn btn-primary">Editar</a>
+      	<a href="admin/borrar?id=${coche.id}" type="button" class="btn btn-danger">Borrar</a>
       </td>
     </tr>
   </c:forEach>
   </tbody>
 </table>
 <div class="text-center">
-	<a href="formulario" type="button" class="btn btn-success text-center mt-3">Añadir</a>
+	<a href="admin/formulario" type="button" class="btn btn-success text-center mt-3">Añadir</a>
 </div>
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp" %>
