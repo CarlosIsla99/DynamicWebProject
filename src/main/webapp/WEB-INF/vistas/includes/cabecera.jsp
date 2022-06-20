@@ -22,7 +22,14 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="admin/coches">Administración</a>
+      	<c:choose>
+			<c:when test="${sessionScope.usuario == null}">
+				<a class="nav-link"></a>
+			</c:when>
+			<c:otherwise>
+				<a class="nav-link" href="admin/coches">Administración</a>
+			</c:otherwise>
+		</c:choose>
       </li>
     </ul>
   </div>
@@ -30,10 +37,14 @@
 		<ul class="navbar-nav mb-2 mb-lg-0">
 			<c:choose>
 				<c:when test="${sessionScope.usuario == null}">
-					<li class="nav-item"><a class="nav-link" href="login">Login</a></li>
+					<div class="text-center">
+						<a href="login" type="button" class="btn btn-outline-primary text-center px-3 mx-4">Login</a>
+					</div>
 				</c:when>
 				<c:otherwise>
-					<li class="nav-item"><a class="nav-link" href="logout">Logout</a></li>
+					<div class="text-center">
+						<a href="logout" type="button" class="btn btn-outline-danger text-center px-3 mx-4">Logout</a>
+					</div>
 				</c:otherwise>
 			</c:choose>
 		</ul>
