@@ -3,8 +3,8 @@ package servlets.controladores;
 import java.io.IOException;
 import java.util.Properties;
 
-import servlets.dal.DalException;
 import servlets.dal.DaoCoche;
+import servlets.dal.DaoException;
 import servlets.dal.DaoFabrica;
 
 public class Globales {
@@ -21,7 +21,7 @@ public class Globales {
 			
 			DAO = new DaoFabrica(tipo).getDaoCoche();
 		} catch (IOException e) {
-			throw new DalException("No se ha podido obtener la configuración");
+			throw new DaoException("No se ha podido obtener la configuración");
 		}
 	}
 }

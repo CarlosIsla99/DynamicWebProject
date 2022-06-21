@@ -17,9 +17,9 @@ public class CochesServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setAttribute("coches", Globales.DAO.obtenerTodos());
+		request.setAttribute("coches", Globales.DAO.obtenerTodos());	
 		request.getRequestDispatcher("/WEB-INF/vistas/coches.jsp").forward(request, response);
-			
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

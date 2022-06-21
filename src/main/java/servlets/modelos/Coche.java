@@ -3,7 +3,7 @@ package servlets.modelos;
 import java.util.Objects;
 
 import servlets.bibliotecas.Validaciones;
-import servlets.dal.DalException;
+import servlets.dal.DaoException;
 
 public class Coche {
 	
@@ -43,7 +43,7 @@ public class Coche {
 
 	public void setMatricula(String matricula) {
 		if (!Validaciones.validarMatricula(matricula)) {
-			throw new DalException("Matrícula no válida");
+			throw new DaoException("Matrícula no válida");
 		}
 		this.matricula = matricula;
 	}
@@ -54,7 +54,7 @@ public class Coche {
 
 	public void setMarca(String marca) {
 		if(marca == null || marca.trim().length() < 3 || marca.matches(".*\\d.*")) {
-			throw new DalException("La marca debe tener al menos 3 letras");
+			throw new DaoException("La marca debe tener al menos 3 letras");
 		}
 		this.marca = marca;
 	}
@@ -65,7 +65,7 @@ public class Coche {
 
 	public void setModelo(String modelo) {
 		if(modelo == null || modelo.trim().length() == 0) {
-			throw new DalException("El modelo no puede estar vacío");
+			throw new DaoException("El modelo no puede estar vacío");
 		}
 		this.modelo = modelo;
 	}
@@ -76,7 +76,7 @@ public class Coche {
 
 	public void setColor(String color) {
 		if(color == null || color.trim().length() == 0) {
-			throw new DalException("Debes elegir un color");
+			throw new DaoException("Debes elegir un color");
 		}
 		this.color = color;
 	}
@@ -87,7 +87,7 @@ public class Coche {
 
 	public void setPotencia(int potencia) {
 		if(potencia <= 0) {
-			throw new DalException("Introduce una potencia mayor que 0");
+			throw new DaoException("Introduce una potencia mayor que 0");
 		}
 		this.potencia = potencia;
 	}
@@ -98,7 +98,7 @@ public class Coche {
 
 	public void setCilindrada(int cilindrada) {
 		if(cilindrada <= 0) {
-			throw new DalException("Introduce una cilindrada mayor que 0");
+			throw new DaoException("Introduce una cilindrada mayor que 0");
 		}
 		this.cilindrada = cilindrada;
 	}

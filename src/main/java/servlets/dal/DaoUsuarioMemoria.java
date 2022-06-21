@@ -3,14 +3,14 @@ package servlets.dal;
 import java.util.TreeMap;
 
 import servlets.modelos.Usuario;
+import servlets.modelos.Usuario.Roles;
 
 public class DaoUsuarioMemoria implements DaoUsuario {
 	private static final TreeMap<Long, Usuario> usuarios = new TreeMap<>();
 
 	static {
-		usuarios.put(1L, new Usuario(1L, "javier@gmail.com", "admin"));
-		usuarios.put(2L, new Usuario(2L, "isla.carlos.99@gmail.com", "1411"));
-		usuarios.put(3L, new Usuario(3L, "juan@gmail.com", "contra"));
+		usuarios.put(1L, new Usuario(1L, "admin@gmail.com", "admin", "685847394", Roles.ADMIN));
+		usuarios.put(2L, new Usuario(2L, "cliente@gmail.com", "cliente", "689938476", Roles.CLIENTE));
 	}
 
 	// SINGLETON

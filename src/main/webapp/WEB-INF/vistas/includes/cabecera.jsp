@@ -27,7 +27,13 @@
 				<a class="nav-link"></a>
 			</c:when>
 			<c:otherwise>
-				<a class="nav-link" href="admin/coches">Administración</a>
+				<c:if test="${sessionScope.usuario.rol == 'ADMIN'}">
+					<td>
+      					<div class="text-center">
+							<a class="nav-link" href="admin/coches">Administración</a>
+						</div>
+      				</td>
+	  			</c:if>
 			</c:otherwise>
 		</c:choose>
       </li>
