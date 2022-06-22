@@ -10,7 +10,8 @@ public class DaoUsuarioMemoria implements DaoUsuario {
 
 	static {
 		usuarios.put(1L, new Usuario(1L, "admin@gmail.com", "admin", "685847394", Roles.ADMIN));
-		usuarios.put(2L, new Usuario(2L, "cliente@gmail.com", "cliente", "689938476", Roles.CLIENTE));
+		usuarios.put(2L, new Usuario(2L, "cliente1@gmail.com", "cliente", "689938476", Roles.CLIENTE));
+		usuarios.put(3L, new Usuario(3L, "cliente2@gmail.com", "cliente", "688394036", Roles.CLIENTE));
 	}
 
 	// SINGLETON

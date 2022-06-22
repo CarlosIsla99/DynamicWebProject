@@ -49,7 +49,7 @@ public class ReservaFormServlet extends HttpServlet {
 		String accion = "";
 		
 		Reserva reserva = new Reserva(null, nombre, email, datetime, numPersonas, comentario);
-		
+
 		try {
 			if(id == null || id.trim().length() == 0) {
 				DAO.insertar(reserva);
@@ -68,7 +68,7 @@ public class ReservaFormServlet extends HttpServlet {
 			request.setAttribute("alertanivel", "danger");
 		}
 			
-		request.getRequestDispatcher("/admin/coches").forward(request, response);
+		request.getRequestDispatcher("/admin/misReservas").forward(request, response);
 		
 	}
 

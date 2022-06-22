@@ -27,7 +27,7 @@ public class LoginFilter extends HttpFilter {
 		Usuario usuario = (Usuario) session.getAttribute("usuario");
 		
 		if(usuario == null) {
-			httpRequest.setAttribute("alertatexto", "Debes estar logueado para acceder a la parte de administración");
+			httpRequest.setAttribute("alertatexto", "Debes estar logueado para acceder");
 			httpRequest.setAttribute("alertanivel", "danger");
 			httpRequest.getRequestDispatcher("/login").forward(httpRequest, httpResponse);
 			return;

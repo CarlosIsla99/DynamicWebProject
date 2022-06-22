@@ -16,6 +16,7 @@
   </thead>
   <tbody>
   <c:forEach items="${reservas}" var="reserva">
+  	<c:if test="${sessionScope.usuario.email == reserva.email}">
     <tr>
       <td>${reserva.nombre}</td>
       <td>${reserva.email}</td>
@@ -27,6 +28,7 @@
          <a href="admin/reservaFormulario?id=${reserva.id}" type="button" class="btn btn-primary">Modificar</a>
       </td>
     </tr>
+    </c:if>
   </c:forEach>
   </tbody>
 </table>
