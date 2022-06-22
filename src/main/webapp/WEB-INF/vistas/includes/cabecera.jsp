@@ -14,7 +14,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
-  <a class="navbar-brand px-2" href="#">COCHES LOGO</a>
+  <a class="navbar-brand px-2" href="admin/coches">COCHES LOGO</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -39,8 +39,7 @@
       </li>
     </ul>
   </div>
-    	<span class="navbar-text"> ${sessionScope.usuario.email} </span>
-		<ul class="navbar-nav mb-2 mb-lg-0">
+		<ul class="navbar-nav ml-3 mb-2 mb-lg-0">
 			<c:choose>
 				<c:when test="${sessionScope.usuario == null}">
 					<div class="text-center">
@@ -48,7 +47,15 @@
 					</div>
 				</c:when>
 				<c:otherwise>
-					<div class="text-center">
+				<span class="navbar-text mx-3"> ${sessionScope.usuario.email} </span>
+					<div class="d-flex flex-row">
+						<c:if test="${sessionScope.usuario.rol == 'CLIENTE'}">
+							<td>
+      							<div class="text-center">
+									<a href="admin/misReservas" type="button" class="btn btn-outline-primary">Mis Reservas</a>
+								</div>
+      						</td>
+	  					</c:if>
 						<a href="logout" type="button" class="btn btn-outline-danger text-center px-3 mx-4">Logout</a>
 					</div>
 				</c:otherwise>

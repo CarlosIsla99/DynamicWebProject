@@ -39,7 +39,7 @@
          </c:when>
          <c:otherwise>
            <a href="admin/coche?id=${coche.id}" type="button" class="btn btn-secondary">Ver</a>
-           <a href="admin/reservar?id=${coche.id}" type="button" class="btn btn-success">Reservar</a>
+           <a href="admin/reservaFormulario" type="button" class="btn btn-success">Reservar</a>
          </c:otherwise>
       	</c:choose>
       	</td>

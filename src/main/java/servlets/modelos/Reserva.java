@@ -10,17 +10,17 @@ public class Reserva {
 	private String email;
 	private LocalDateTime fechaHora;
 	private Integer numeroPersonas;
-	private String comentarios;
+	private String comentario;
 	
 	public Reserva(Long id, String nombre, String email, LocalDateTime fechaHora, Integer numeroPersonas,
-			String comentarios) {
+			String comentario) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.email = email;
 		this.fechaHora = fechaHora;
 		this.numeroPersonas = numeroPersonas;
-		this.comentarios = comentarios;
+		this.comentario = comentario;
 	}
 
 	public Long getId() {
@@ -63,17 +63,17 @@ public class Reserva {
 		this.numeroPersonas = numeroPersonas;
 	}
 
-	public String getComentarios() {
-		return comentarios;
+	public String getComentario() {
+		return comentario;
 	}
 
-	public void setComentarios(String comentarios) {
-		this.comentarios = comentarios;
+	public void setComentario(String comentario) {
+		this.comentario = comentario;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(comentarios, email, fechaHora, id, nombre, numeroPersonas);
+		return Objects.hash(comentario, email, fechaHora, id, nombre, numeroPersonas);
 	}
 
 	@Override
@@ -85,7 +85,7 @@ public class Reserva {
 		if (getClass() != obj.getClass())
 			return false;
 		Reserva other = (Reserva) obj;
-		return Objects.equals(comentarios, other.comentarios) && Objects.equals(email, other.email)
+		return Objects.equals(comentario, other.comentario) && Objects.equals(email, other.email)
 				&& Objects.equals(fechaHora, other.fechaHora) && Objects.equals(id, other.id)
 				&& Objects.equals(nombre, other.nombre) && Objects.equals(numeroPersonas, other.numeroPersonas);
 	}
@@ -93,7 +93,7 @@ public class Reserva {
 	@Override
 	public String toString() {
 		return "Reserva [id=" + id + ", nombre=" + nombre + ", email=" + email + ", fechaHora=" + fechaHora
-				+ ", numeroPersonas=" + numeroPersonas + ", comentarios=" + comentarios + "]";
+				+ ", numeroPersonas=" + numeroPersonas + ", comentario=" + comentario + "]";
 	}
 	
 	

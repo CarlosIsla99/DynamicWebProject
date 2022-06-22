@@ -5,24 +5,34 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import servlets.modelos.Coche;
+import servlets.dal.DaoReserva;
+import servlets.dal.DaoReservaMemoria;
+import servlets.modelos.Reserva;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
-@WebServlet("/admin/formulario")
+@WebServlet("/admin/reservaFormulario")
 public class ReservaFormServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
+	private static final DaoReserva DAO = DaoReservaMemoria.getInstancia();
 
     public ReservaFormServlet() {}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String id = request.getParameter("id");
+		String accion = "Realizar";
 		
-		Coche coche = Globales.DAO.obtenerPorId(Long.parseLong(id));
-		request.setAttribute("coche", coche);
+		if (id != null) {
+			Reserva reserva = DAO.obtenerPorId(Long.parseLong(id));
+			accion = "Modificar";
+			
+			request.setAttribute("reserva", reserva);
+		}
 
+		request.setAttribute("accion", accion);
 		request.getRequestDispatcher("/WEB-INF/vistas/reservaFormulario.jsp").forward(request, response);
 			
 	}
@@ -30,32 +40,31 @@ public class ReservaFormServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String id = request.getParameter("id");
-		String matricula = request.getParameter("matricula");
-		String marca = request.getParameter("marca");
-		String modelo = request.getParameter("modelo");
-		String color = request.getParameter("color");
-		int potencia = Integer.parseInt(request.getParameter("potencia"));
-		int cilindrada = Integer.parseInt(request.getParameter("cilindrada"));
+		String nombre = request.getParameter("nombre");
+		String email = request.getParameter("email");
+		LocalDateTime datetime = LocalDateTime.parse(request.getParameter("datetime"));
+		int numPersonas = Integer.parseInt(request.getParameter("numPersonas"));
+		String comentario = request.getParameter("comentario");
 		
 		String accion = "";
 		
-		Coche coche = new Coche(null, matricula, marca, modelo, color, potencia, cilindrada);
+		Reserva reserva = new Reserva(null, nombre, email, datetime, numPersonas, comentario);
 		
 		try {
 			if(id == null || id.trim().length() == 0) {
-				Globales.DAO.insertar(coche);
-				accion = "añadido";
+				DAO.insertar(reserva);
+				accion = "realizada";
 			} else {
-				coche.setId(Long.parseLong(id));
-				Globales.DAO.modificar(coche);
-				accion = "modificado";
+				reserva.setId(Long.parseLong(id));
+				DAO.modificar(reserva);
+				accion = "modificada";
 			}
 			
-			request.setAttribute("alertatexto", "Se ha " + accion + " el registro correctamente");
+			request.setAttribute("alertatexto", "Reserva " + accion + " correctamente");
 			request.setAttribute("alertanivel", "success");
 			
 		} catch (Exception e) {
-			request.setAttribute("alertatexto", "La opción de " + accion + " no ha funcionado");
+			request.setAttribute("alertatexto", "La reserva no ha podido ser " + accion);
 			request.setAttribute("alertanivel", "danger");
 		}
 			

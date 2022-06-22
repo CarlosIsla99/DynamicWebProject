@@ -23,7 +23,7 @@ public class FormServlet extends HttpServlet {
 		
 		if (id != null) {
 			Coche coche = Globales.DAO.obtenerPorId(Long.parseLong(id));
-			accion = "Editar";
+			accion = "Modificar";
 			
 			request.setAttribute("coche", coche);
 		}
