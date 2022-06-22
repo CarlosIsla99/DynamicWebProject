@@ -46,9 +46,23 @@ public class ReservaFormServlet extends HttpServlet {
 		int numPersonas = Integer.parseInt(request.getParameter("numPersonas"));
 		String comentario = request.getParameter("comentario");
 		
+		if(comentario.length() == 0 || comentario == null) {
+			comentario = "'Sin comentario'";
+		}
+		
 		String accion = "";
 		
 		Reserva reserva = new Reserva(null, nombre, email, datetime, numPersonas, comentario);
+		
+		if(reserva.getErrores().size() > 0) {
+			request.setAttribute("alertatexto", "No se ha podido realizar la reserva. Revise los datos.");
+			request.setAttribute("alertanivel", "danger");
+			
+			request.setAttribute("reserva", reserva);
+			
+			request.getRequestDispatcher("/WEB-INF/vistas/reservaFormulario.jsp").forward(request, response);
+			return;
+		}
 
 		try {
 			if(id == null || id.trim().length() == 0) {
