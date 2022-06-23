@@ -42,7 +42,6 @@ public class RegisterServlet extends HttpServlet {
 			return;
 		}
 		
-		System.out.println(usuario);
 		DAO.insertar(usuario);
 		response.sendRedirect("login");
 
