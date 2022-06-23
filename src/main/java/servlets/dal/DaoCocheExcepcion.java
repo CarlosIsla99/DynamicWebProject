@@ -34,5 +34,11 @@ class DaoCocheExcepcion implements DaoCoche {
 		
 	}
 
+	@Override
+	public boolean obtenerReservadoPorId(Long id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 
 }

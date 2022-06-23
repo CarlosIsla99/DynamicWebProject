@@ -14,12 +14,9 @@ public class Coche {
 	private String color;
 	private int potencia;
 	private int cilindrada;
-	
-	public Coche() {
-		super();
-	}
+	private boolean reserva;
 
-	public Coche(Long id, String matricula, String marca, String modelo, String color, int potencia, int cilindrada) {
+	public Coche(Long id, String matricula, String marca, String modelo, String color, int potencia, int cilindrada, boolean reserva) {
 		setId(id);
 		setMatricula(matricula);
 		setMarca(marca);
@@ -103,9 +100,17 @@ public class Coche {
 		this.cilindrada = cilindrada;
 	}
 
+	public boolean isReserva() {
+		return reserva;
+	}
+
+	public void setReserva(boolean reserva) {
+		this.reserva = reserva;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(cilindrada, color, id, marca, matricula, modelo, potencia);
+		return Objects.hash(cilindrada, color, id, marca, matricula, modelo, potencia, reserva);
 	}
 
 	@Override
@@ -119,15 +124,13 @@ public class Coche {
 		Coche other = (Coche) obj;
 		return cilindrada == other.cilindrada && Objects.equals(color, other.color) && Objects.equals(id, other.id)
 				&& Objects.equals(marca, other.marca) && Objects.equals(matricula, other.matricula)
-				&& Objects.equals(modelo, other.modelo) && potencia == other.potencia;
+				&& Objects.equals(modelo, other.modelo) && potencia == other.potencia && reserva == other.reserva;
 	}
 
 	@Override
 	public String toString() {
 		return "Coche [id=" + id + ", matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", color="
-				+ color + ", potencia=" + potencia + ", cilindrada=" + cilindrada + "]";
+				+ color + ", potencia=" + potencia + ", cilindrada=" + cilindrada + ", reserva=" + reserva + "]";
 	}
-	
-	
 
 }

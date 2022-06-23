@@ -5,6 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import servlets.dal.DaoCoche;
+import servlets.dal.DaoCocheMemoria;
 import servlets.modelos.Coche;
 
 import java.io.IOException;
@@ -13,6 +15,7 @@ import java.io.IOException;
 public class FormServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
+	private static final DaoCoche DaoCoche = DaoCocheMemoria.getInstancia();
 
     public FormServlet() {}
 
@@ -42,10 +45,11 @@ public class FormServlet extends HttpServlet {
 		String color = request.getParameter("color");
 		int potencia = Integer.parseInt(request.getParameter("potencia"));
 		int cilindrada = Integer.parseInt(request.getParameter("cilindrada"));
+		boolean reservado = DaoCoche.obtenerReservadoPorId(Long.parseLong(id));
 		
 		String accion = "";
-		
-		Coche coche = new Coche(null, matricula, marca, modelo, color, potencia, cilindrada);
+			
+		Coche coche = new Coche(null, matricula, marca, modelo, color, potencia, cilindrada, reservado);
 		
 		try {
 			if(id == null || id.trim().length() == 0) {
@@ -68,5 +72,6 @@ public class FormServlet extends HttpServlet {
 		request.getRequestDispatcher("/admin/coches").forward(request, response);
 		
 	}
+	
 
 }
