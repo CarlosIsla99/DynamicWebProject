@@ -25,9 +25,7 @@ public class LoginServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
-		Usuario usuario = new Usuario(null, email, password, null, null);
-		
-		Usuario usuarioValidado = validarUsuario(usuario);
+		Usuario usuarioValidado = validarUsuario(email, password);
 		
 		if(usuarioValidado != null) {
 			request.getSession().setAttribute("usuario", usuarioValidado);
@@ -38,11 +36,11 @@ public class LoginServlet extends HttpServlet {
 		}
 	}
 
-	private Usuario validarUsuario(Usuario usuario) {
+	private Usuario validarUsuario(String email, String password) {
 		
-		Usuario usuarioEncontrado = DAO.obtenerPorEmail(usuario.getEmail());
+		Usuario usuarioEncontrado = DAO.obtenerPorEmail(email);
 		
-		if(usuarioEncontrado != null && usuario.getPassword().equals(usuarioEncontrado.getPassword())) {
+		if(usuarioEncontrado != null && password.equals(usuarioEncontrado.getPassword())) {
 			
 			return usuarioEncontrado;
 		}

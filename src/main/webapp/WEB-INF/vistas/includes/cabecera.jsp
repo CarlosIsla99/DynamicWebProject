@@ -43,19 +43,29 @@
 			<c:choose>
 				<c:when test="${sessionScope.usuario == null}">
 					<div class="text-center">
-						<a href="login" type="button" class="btn btn-outline-primary text-center px-3 mx-4">Login</a>
+						<a href="register" type="button" class="btn btn-outline-primary text-center px-3">Register</a>
+						<a href="login" type="button" class="btn btn-outline-primary text-center px-3 mx-3">Login</a>
 					</div>
 				</c:when>
 				<c:otherwise>
 				<span class="navbar-text mx-3"> ${sessionScope.usuario.email} </span>
 					<div class="d-flex flex-row">
-						<c:if test="${sessionScope.usuario.rol == 'CLIENTE'}">
+					<c:choose>
+						<c:when test="${sessionScope.usuario.rol == 'CLIENTE'}">
 							<td>
       							<div class="text-center">
 									<a href="admin/misReservas" type="button" class="btn btn-outline-primary">Mis Reservas</a>
 								</div>
       						</td>
-	  					</c:if>
+	  					</c:when>
+	  					<c:otherwise>
+	  						<td>
+      							<div class="text-center">
+									<a href="admin/todasReservas" type="button" class="btn btn-outline-primary">Todas las reservas</a>
+								</div>
+      						</td>
+	  					</c:otherwise>
+	  				</c:choose>
 						<a href="logout" type="button" class="btn btn-outline-danger text-center px-3 mx-4">Logout</a>
 					</div>
 				</c:otherwise>

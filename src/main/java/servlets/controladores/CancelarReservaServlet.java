@@ -21,13 +21,18 @@ public class CancelarReservaServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Long id = Long.parseLong(request.getParameter("id"));
+		String admin = request.getParameter("admin");
 		
 		DAO.borrar(id);
 		
 		request.setAttribute("alertatexto", "Se ha cancelado la reserva");
 		request.setAttribute("alertanivel", "success");
 		
-		request.getRequestDispatcher("/admin/misReservas").forward(request, response);
+		if(admin != null && admin.trim().equals("ADMIN")) {
+			request.getRequestDispatcher("/admin/todasReservas").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/admin/misReservas").forward(request, response);
+		}
 			
 	}
 

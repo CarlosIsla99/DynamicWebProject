@@ -40,6 +40,7 @@ public class ReservaFormServlet extends HttpServlet {
 		request.setAttribute("idCoche", idCoche);
 		request.setAttribute("coches", DaoCoche.obtenerTodos());
 		request.getRequestDispatcher("/WEB-INF/vistas/reservaFormulario.jsp").forward(request, response);
+		
 			
 	}
 
@@ -90,6 +91,8 @@ public class ReservaFormServlet extends HttpServlet {
 		}
 			
 		request.getRequestDispatcher("/admin/misReservas").forward(request, response);
+		
+		
 		
 	}
 

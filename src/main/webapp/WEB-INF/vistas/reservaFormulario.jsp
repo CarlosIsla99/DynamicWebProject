@@ -4,7 +4,7 @@
 
 <h1 class="text-center my-3">${accion} reserva</h1>
 
-<form class="text-center" autocomplete="off" method="POST" action="admin/reservaFormulario">
+<form class="text-center" autocomplete="off" method="POST" action="admin/reservaFormulario?admin=${sessionScope.usuario.rol}">
   <div class="form-row row justify-content-center">
   
     <div class="col-5 mt-2">

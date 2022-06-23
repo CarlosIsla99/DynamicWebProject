@@ -1,5 +1,7 @@
 package servlets.modelos;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Usuario {
@@ -10,6 +12,8 @@ public class Usuario {
 	private String password;
 	private String telefono;
 	private Roles rol;
+	
+	private Map<String, String> errores = new HashMap<>();
 	
 	public Usuario(Long id, String email, String password, String telefono, Roles rol) {
 		setId(id);
@@ -32,6 +36,15 @@ public class Usuario {
 	}
 
 	public void setEmail(String email) {
+		
+		if (email == null) {
+			throw new RuntimeException("No se ha recibido el email");
+		}
+
+		if (email.trim().length() > 0 && !email.trim().matches("^\\w+@\\w+\\.\\w+$")) {
+			errores.put("email", "Debes introducir un formato de email válido");
+		}
+		
 		this.email = email;
 	}
 
@@ -40,6 +53,11 @@ public class Usuario {
 	}
 
 	public void setPassword(String password) {
+		
+		if(password.trim().length()<4) {
+			errores.put("password", "La contraseña debe tener al menos 4 carácteres");
+		}
+		
 		this.password = password;
 	}
 	
@@ -48,6 +66,11 @@ public class Usuario {
 	}
 
 	public void setTelefono(String telefono) {
+		
+		if(telefono.length()<9 || telefono.length()>9) {
+			errores.put("telefono", "Teléfono no válido");
+		}
+		
 		this.telefono = telefono;
 	}
 
@@ -57,6 +80,10 @@ public class Usuario {
 
 	public void setRol(Roles rol) {
 		this.rol = rol;
+	}
+	
+	public Map<String, String> getErrores() {
+		return errores;
 	}
 
 	@Override
