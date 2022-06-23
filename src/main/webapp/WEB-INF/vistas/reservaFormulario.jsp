@@ -18,6 +18,22 @@
  		<input type="email" name="email" value="${sessionScope.usuario.email}" class="form-control" id="exampleInputEmail" readonly>
  		<span class="text-danger">${reserva.errores.email}</span>
 	</div>
+	
+	<div class="col-5 mt-2">
+	<label>Coche</label>
+		<select class="form-select" name="cocheId" aria-label="Default select example">
+		<c:forEach items="${coches}" var="coche">
+			<c:choose>
+         		<c:when test="${coche.id == idCoche}">
+					<option value="${coche.id}" selected>${coche.marca} ${coche.modelo}</option>
+				</c:when>
+				<c:otherwise>
+	  				<option value="${coche.id}">${coche.marca} ${coche.modelo}</option>
+	  			</c:otherwise>
+	  		</c:choose>
+  		</c:forEach>
+		</select>
+	</div>
 
     <div class="col-5 mt-2">
     <label>Fecha y hora</label>

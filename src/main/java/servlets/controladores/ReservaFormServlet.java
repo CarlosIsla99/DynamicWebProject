@@ -5,6 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import servlets.dal.DaoCoche;
+import servlets.dal.DaoCocheMemoria;
 import servlets.dal.DaoReserva;
 import servlets.dal.DaoReservaMemoria;
 import servlets.modelos.Reserva;
@@ -16,23 +18,27 @@ import java.time.LocalDateTime;
 public class ReservaFormServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private static final DaoReserva DAO = DaoReservaMemoria.getInstancia();
+	private static final DaoReserva DaoReserva = DaoReservaMemoria.getInstancia();
+	private static final DaoCoche DaoCoche= DaoCocheMemoria.getInstancia();
 
     public ReservaFormServlet() {}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String id = request.getParameter("id");
+		Long idCoche = Long.parseLong(request.getParameter("idCoche"));
 		String accion = "Realizar";
 		
 		if (id != null) {
-			Reserva reserva = DAO.obtenerPorId(Long.parseLong(id));
+			Reserva reserva = DaoReserva.obtenerPorId(Long.parseLong(id));
 			accion = "Modificar";
 			
 			request.setAttribute("reserva", reserva);
 		}
 
 		request.setAttribute("accion", accion);
+		request.setAttribute("idCoche", idCoche);
+		request.setAttribute("coches", DaoCoche.obtenerTodos());
 		request.getRequestDispatcher("/WEB-INF/vistas/reservaFormulario.jsp").forward(request, response);
 			
 	}
@@ -40,6 +46,7 @@ public class ReservaFormServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String id = request.getParameter("id");
+		Long idCoche = Long.parseLong(request.getParameter("cocheId"));
 		String nombre = request.getParameter("nombre");
 		String email = request.getParameter("email");
 		LocalDateTime datetime = LocalDateTime.parse(request.getParameter("datetime"));
@@ -52,7 +59,7 @@ public class ReservaFormServlet extends HttpServlet {
 		
 		String accion = "";
 		
-		Reserva reserva = new Reserva(null, nombre, email, datetime, numPersonas, comentario);
+		Reserva reserva = new Reserva(null, idCoche, nombre, email, datetime, numPersonas, comentario);
 		
 		if(reserva.getErrores().size() > 0) {
 			request.setAttribute("alertatexto", "No se ha podido realizar la reserva. Revise los datos.");
@@ -66,11 +73,11 @@ public class ReservaFormServlet extends HttpServlet {
 
 		try {
 			if(id == null || id.trim().length() == 0) {
-				DAO.insertar(reserva);
+				DaoReserva.insertar(reserva);
 				accion = "realizada";
 			} else {
 				reserva.setId(Long.parseLong(id));
-				DAO.modificar(reserva);
+				DaoReserva.modificar(reserva);
 				accion = "modificada";
 			}
 			

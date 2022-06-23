@@ -7,13 +7,13 @@ import servlets.dal.DaoException;
 
 public class Coche {
 	
-	Long id;
-	String matricula;
-	String marca;
-	String modelo;
-	String color;
-	int potencia;
-	int cilindrada;
+	private Long id;
+	private String matricula;
+	private String marca;
+	private String modelo;
+	private String color;
+	private int potencia;
+	private int cilindrada;
 	
 	public Coche() {
 		super();

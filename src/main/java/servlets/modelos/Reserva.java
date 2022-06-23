@@ -8,6 +8,7 @@ import java.util.Objects;
 public class Reserva {
 	
 	private Long id;
+	private Long idCoche;
 	private String nombre;
 	private String email;
 	private LocalDateTime fechaHora;
@@ -16,10 +17,11 @@ public class Reserva {
 	
 	private Map<String, String> errores = new HashMap<>();
 	
-	public Reserva(Long id, String nombre, String email, LocalDateTime fechaHora, Integer numeroPersonas,
+	public Reserva(Long id, Long idCoche, String nombre, String email, LocalDateTime fechaHora, Integer numeroPersonas,
 			String comentario) {
 		super();
 		setId(id);
+		setIdCoche(idCoche);
 		setNombre(nombre);
 		setEmail(email);
 		setFechaHora(fechaHora);
@@ -33,6 +35,14 @@ public class Reserva {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Long getIdCoche() {
+		return idCoche;
+	}
+
+	public void setIdCoche(Long idCoche) {
+		this.idCoche = idCoche;
 	}
 
 	public String getNombre() {
@@ -111,7 +121,7 @@ public class Reserva {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(comentario, email, fechaHora, id, nombre, numeroPersonas);
+		return Objects.hash(comentario, email, errores, fechaHora, id, idCoche, nombre, numeroPersonas);
 	}
 
 	@Override
@@ -124,18 +134,16 @@ public class Reserva {
 			return false;
 		Reserva other = (Reserva) obj;
 		return Objects.equals(comentario, other.comentario) && Objects.equals(email, other.email)
-				&& Objects.equals(fechaHora, other.fechaHora) && Objects.equals(id, other.id)
+				&& Objects.equals(errores, other.errores) && Objects.equals(fechaHora, other.fechaHora)
+				&& Objects.equals(id, other.id) && Objects.equals(idCoche, other.idCoche)
 				&& Objects.equals(nombre, other.nombre) && Objects.equals(numeroPersonas, other.numeroPersonas);
 	}
 
 	@Override
 	public String toString() {
-		return "Reserva [id=" + id + ", nombre=" + nombre + ", email=" + email + ", fechaHora=" + fechaHora
-				+ ", numeroPersonas=" + numeroPersonas + ", comentario=" + comentario + "]";
+		return "Reserva [id=" + id + ", idCoche=" + idCoche + ", nombre=" + nombre + ", email=" + email + ", fechaHora="
+				+ fechaHora + ", numeroPersonas=" + numeroPersonas + ", comentario=" + comentario + ", errores="
+				+ errores + "]";
 	}
-	
-	
-	
-
 
 }
