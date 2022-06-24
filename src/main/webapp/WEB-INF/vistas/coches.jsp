@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="servlets.modelos.Coche"%>
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp" %>
 
-<h1 class="text-center mb-5">Todos los coches</h1>
+<h1 class="text-center mb-4">Todos los coches</h1>
 <table class="table table-dark table-hover text-center">
   <thead>
     <tr>
@@ -53,7 +53,6 @@
 		<td>
 		<c:choose>
          <c:when test="${sessionScope.usuario.rol == 'ADMIN'}">
-         	<a href="admin/coche?id=${coche.id}" type="button" class="btn btn-secondary">Ver</a>
             <a href="admin/formulario?id=${coche.id}" type="button" class="btn btn-primary">Editar</a>
       		<a href="admin/borrar?id=${coche.id}" type="button" class="btn btn-danger">Borrar</a>
          </c:when>
