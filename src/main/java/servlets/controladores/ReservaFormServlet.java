@@ -29,6 +29,12 @@ public class ReservaFormServlet extends HttpServlet {
 		Long idCoche = Long.parseLong(request.getParameter("idCoche"));
 		String accion = "Realizar";
 		
+		if(DaoCoche.obtenerReservadoPorId(idCoche) == true) {
+			request.setAttribute("alertatexto", "No se ha podido realizar la reserva. El coche ya está reservado.");
+			request.setAttribute("alertanivel", "danger");
+			request.getRequestDispatcher("/admin/coches").forward(request, response);
+		}
+		
 		if (id != null) {
 			Reserva reserva = DaoReserva.obtenerPorId(Long.parseLong(id));
 			accion = "Modificar";
