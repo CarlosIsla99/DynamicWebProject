@@ -21,22 +21,23 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+    <c:if test="${sessionScope.usuario.rol == 'ADMIN'}">
       <li class="nav-item active">
-      	<c:choose>
-			<c:when test="${sessionScope.usuario == null}">
-				<a class="nav-link"></a>
-			</c:when>
-			<c:otherwise>
-				<c:if test="${sessionScope.usuario.rol == 'ADMIN'}">
-					<td>
-      					<div class="text-center">
-							<a class="nav-link" href="admin/coches">Administración</a>
-						</div>
-      				</td>
-	  			</c:if>
-			</c:otherwise>
-		</c:choose>
+		<div class="text-center">
+			<a class="nav-link mx-2" href="admin/coches">Administrar coches</a>
+		</div>
+	  </li>
+      <li class="nav-item active">
+		<div class="text-center">
+			<a class="nav-link mx-2" href="admin/todasReservas">Ver todas las reservas</a>
+		</div>
       </li>
+      <li class="nav-item active">
+		<div class="text-center">
+			<a class="nav-link mx-2" href="admin/formulario">Añadir un coche</a>
+		</div>
+      </li>
+      </c:if>
     </ul>
   </div>
 		<ul class="navbar-nav ml-3 mb-2 mb-lg-0">
@@ -50,22 +51,13 @@
 				<c:otherwise>
 				<span class="navbar-text mx-3"> ${sessionScope.usuario.email} </span>
 					<div class="d-flex flex-row">
-					<c:choose>
-						<c:when test="${sessionScope.usuario.rol == 'CLIENTE'}">
+						<c:if test="${sessionScope.usuario.rol == 'CLIENTE'}">
 							<td>
       							<div class="text-center">
 									<a href="admin/misReservas" type="button" class="btn btn-outline-primary">Mis Reservas</a>
 								</div>
       						</td>
-	  					</c:when>
-	  					<c:otherwise>
-	  						<td>
-      							<div class="text-center">
-									<a href="admin/todasReservas" type="button" class="btn btn-outline-primary">Todas las reservas</a>
-								</div>
-      						</td>
-	  					</c:otherwise>
-	  				</c:choose>
+	  					</c:if>
 						<a href="logout" type="button" class="btn btn-outline-danger text-center px-3 mx-4">Logout</a>
 					</div>
 				</c:otherwise>

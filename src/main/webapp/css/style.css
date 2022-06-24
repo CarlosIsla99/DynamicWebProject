@@ -8,3 +8,11 @@ td {
      word-wrap: break-word; 
      max-width: 25ch;
 }
+
+.fa-square-xmark {
+	color: #ff3333;
+}
+
+.fa-square-check {
+	color: #24ff50;
+}

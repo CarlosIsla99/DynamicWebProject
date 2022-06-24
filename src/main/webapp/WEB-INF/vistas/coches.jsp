@@ -68,12 +68,4 @@
   </tbody>
 </table>
 
-      <c:if test="${sessionScope.usuario.rol == 'ADMIN'}">
-		<td>
-      		<div class="text-center">
-				<a href="admin/formulario" type="button" class="btn btn-success text-center mt-3">Añadir</a>
-			</div>
-      	</td>
-	  </c:if>
-
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp" %>
