@@ -40,5 +40,17 @@ class DaoCocheExcepcion implements DaoCoche {
 		return false;
 	}
 
+	@Override
+	public void setFalseWhenNoReserva(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setTrueReserva(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

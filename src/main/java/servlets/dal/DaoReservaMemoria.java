@@ -51,5 +51,20 @@ public class DaoReservaMemoria implements DaoReserva {
 		reservas.remove(id);
 	}
 
+	@Override
+	public Long encontrarCochePorIdReserva(Long idResrva) {
+		
+		Long idCoche = null;
+		
+		for(Reserva reserva: reservas.values()) {
+			if(reserva.getId() == idResrva) {
+				idCoche = reserva.getIdCoche();
+			}
+		}
+		
+		return idCoche;
+		
+	}
+
 
 }

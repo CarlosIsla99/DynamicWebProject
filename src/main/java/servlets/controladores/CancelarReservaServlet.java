@@ -23,7 +23,10 @@ public class CancelarReservaServlet extends HttpServlet {
 		Long id = Long.parseLong(request.getParameter("id"));
 		String admin = request.getParameter("admin");
 		
+		Long idCoche = DAO.encontrarCochePorIdReserva(id);
+		Globales.DAO.setFalseWhenNoReserva(idCoche);
 		DAO.borrar(id);
+		
 		
 		request.setAttribute("alertatexto", "Se ha cancelado la reserva");
 		request.setAttribute("alertanivel", "success");

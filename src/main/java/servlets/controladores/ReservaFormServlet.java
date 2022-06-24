@@ -74,6 +74,7 @@ public class ReservaFormServlet extends HttpServlet {
 
 		try {
 			if(id == null || id.trim().length() == 0) {
+				Globales.DAO.setTrueReserva(idCoche);
 				DaoReserva.insertar(reserva);
 				accion = "realizada";
 			} else {

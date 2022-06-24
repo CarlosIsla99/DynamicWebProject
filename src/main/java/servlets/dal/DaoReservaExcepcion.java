@@ -34,5 +34,11 @@ class DaoReservaExcepcion implements DaoReserva {
 		
 	}
 
+	@Override
+	public Long encontrarCochePorIdReserva(Long idResrva) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

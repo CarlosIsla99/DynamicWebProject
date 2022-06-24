@@ -67,4 +67,26 @@ public class DaoCocheMemoria implements DaoCoche {
 
 	}
 
+	@Override
+	public void setFalseWhenNoReserva(Long idCoche) {
+		
+		for(Coche coche: coches.values()) {
+			if(coche.getId() == idCoche) {
+				coche.setReserva(false);;
+			}
+		}
+		
+
+	}
+
+	@Override
+	public void setTrueReserva(Long idCoche) {
+		
+		for(Coche coche: coches.values()) {
+			if(coche.getId() == idCoche) {
+				coche.setReserva(true);;
+			}
+		}
+	}
+
 }

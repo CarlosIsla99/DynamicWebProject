@@ -16,11 +16,6 @@
     </tr>
   </thead>
   <tbody>
-	<c:choose>
-  	<c:when test="${reservas.size() gt 0}">
-  	<td colspan="7">SIN RESERVAS</td>
-  	</c:when>
-  	<c:otherwise>
   	  <c:forEach items="${reservas}" var="reserva">
   	  <c:if test="${sessionScope.usuario.email == reserva.email}">
     <tr>
@@ -41,8 +36,7 @@
     </tr>
     </c:if>
   </c:forEach>
-  	</c:otherwise>
-  </c:choose>
+
   </tbody>
 </table>
 

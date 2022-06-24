@@ -24,6 +24,7 @@ public class Coche {
 		setColor(color);
 		setPotencia(potencia);
 		setCilindrada(cilindrada);
+		setReserva(reserva);
 	}
 
 	public Long getId() {
