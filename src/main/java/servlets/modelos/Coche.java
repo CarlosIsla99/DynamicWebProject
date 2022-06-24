@@ -1,9 +1,10 @@
 package servlets.modelos;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import servlets.bibliotecas.Validaciones;
-import servlets.dal.DaoException;
 
 public class Coche {
 	
@@ -15,6 +16,8 @@ public class Coche {
 	private int potencia;
 	private int cilindrada;
 	private boolean reserva;
+	
+	private Map<String, String> errores = new HashMap<>();
 
 	public Coche(Long id, String matricula, String marca, String modelo, String color, int potencia, int cilindrada, boolean reserva) {
 		setId(id);
@@ -41,7 +44,7 @@ public class Coche {
 
 	public void setMatricula(String matricula) {
 		if (!Validaciones.validarMatricula(matricula)) {
-			throw new DaoException("Matrícula no válida");
+			errores.put("matricula", "Matrícula no válida");
 		}
 		this.matricula = matricula;
 	}
@@ -52,7 +55,7 @@ public class Coche {
 
 	public void setMarca(String marca) {
 		if(marca == null || marca.trim().length() < 3 || marca.matches(".*\\d.*")) {
-			throw new DaoException("La marca debe tener al menos 3 letras");
+			errores.put("marca", "Debe tener al menos 3 letras");
 		}
 		this.marca = marca;
 	}
@@ -63,7 +66,7 @@ public class Coche {
 
 	public void setModelo(String modelo) {
 		if(modelo == null || modelo.trim().length() == 0) {
-			throw new DaoException("El modelo no puede estar vacío");
+			errores.put("modelo", "El modelo no puede estar vacío");
 		}
 		this.modelo = modelo;
 	}
@@ -73,8 +76,8 @@ public class Coche {
 	}
 
 	public void setColor(String color) {
-		if(color == null || color.trim().length() == 0) {
-			throw new DaoException("Debes elegir un color");
+		if(marca == null || marca.trim().length() < 3 || marca.matches(".*\\d.*")) {
+			errores.put("color", "Debe tener al menos 3 letras");
 		}
 		this.color = color;
 	}
@@ -84,8 +87,10 @@ public class Coche {
 	}
 
 	public void setPotencia(int potencia) {
-		if(potencia <= 0) {
-			throw new DaoException("Introduce una potencia mayor que 0");
+		if(potencia < 40) {
+			errores.put("potencia", "La potencia no puede ser inferior a 40CV");
+		} else if (potencia > 1800) {
+			errores.put("potencia", "La potencia puede sobrepasar los 1800CV");
 		}
 		this.potencia = potencia;
 	}
@@ -95,8 +100,10 @@ public class Coche {
 	}
 
 	public void setCilindrada(int cilindrada) {
-		if(cilindrada <= 0) {
-			throw new DaoException("Introduce una cilindrada mayor que 0");
+		if(cilindrada < 50) {
+			errores.put("cilindrada", "La cilindrada no puede ser inferior a 50cc");
+		} else if(cilindrada > 8000) {
+			errores.put("cilindrada", "La cilindrada no puede sobrepasar los 8000cc");
 		}
 		this.cilindrada = cilindrada;
 	}
@@ -107,6 +114,10 @@ public class Coche {
 
 	public void setReserva(boolean reserva) {
 		this.reserva = reserva;
+	}
+
+	public Map<String, String> getErrores() {
+		return errores;
 	}
 
 	@Override

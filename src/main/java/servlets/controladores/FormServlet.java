@@ -39,25 +39,27 @@ public class FormServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String id = request.getParameter("id");
-		System.out.println(1);
 		String matricula = request.getParameter("matricula");
-		System.out.println(2);
 		String marca = request.getParameter("marca");
-		System.out.println(3);
 		String modelo = request.getParameter("modelo");
-		System.out.println(4);
 		String color = request.getParameter("color");
-		System.out.println(5);
 		int potencia = Integer.parseInt(request.getParameter("potencia"));
-		System.out.println(6);
 		int cilindrada = Integer.parseInt(request.getParameter("cilindrada"));
-		System.out.println(7);
 		boolean reservado = false;
-		System.out.println(8);
 		
 		String accion = "";
 			
 		Coche coche = new Coche(null, matricula, marca, modelo, color, potencia, cilindrada, reservado);
+		
+		if(coche.getErrores().size() > 0) {
+			request.setAttribute("alertatexto", "No se ha podido añadir el coche. Datos inválidos.");
+			request.setAttribute("alertanivel", "danger");
+			
+			request.setAttribute("coche", coche);
+			request.getParameter("accion");
+			request.getRequestDispatcher("/WEB-INF/vistas/formulario.jsp").forward(request, response);
+			return;
+		}
 		
 		try {
 			if(id == null || id.trim().length() == 0) {
