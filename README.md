@@ -1,4 +1,3 @@
-# **DynamicWebProject-Example**
 ## Usuarios para acceder a la tienda
 *Para acceder hay que logearse o también 
 tiene la opción de registrar un nuevo usuario*
