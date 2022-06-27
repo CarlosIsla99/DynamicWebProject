@@ -26,7 +26,7 @@ public class DaoFabrica {
 		return daoCoche;
 	}
 	
-	public DaoReserva getDaoResrva() {
+	public DaoReserva getDaoReserva() {
 		return daoReserva;
 	}
 	

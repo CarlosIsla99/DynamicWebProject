@@ -19,7 +19,7 @@ public class BorrarServlet extends HttpServlet {
 		
 		Long id = Long.parseLong(request.getParameter("id"));
 		
-		Globales.DAO.borrar(id);
+		Globales.DAO_COCHE.borrar(id);
 		
 		request.setAttribute("alertatexto", "Se ha borrado el registro #" + id + " correctamente");
 		request.setAttribute("alertanivel", "success");

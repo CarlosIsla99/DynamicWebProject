@@ -5,10 +5,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import servlets.dal.DaoCoche;
-import servlets.dal.DaoCocheMemoria;
-import servlets.dal.DaoReserva;
-import servlets.dal.DaoReservaMemoria;
 import servlets.modelos.Reserva;
 
 import java.io.IOException;
@@ -18,8 +14,6 @@ import java.time.LocalDateTime;
 public class ReservaFormServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private static final DaoReserva DaoReserva = DaoReservaMemoria.getInstancia();
-	private static final DaoCoche DaoCoche= DaoCocheMemoria.getInstancia();
 
     public ReservaFormServlet() {}
 
@@ -29,22 +23,20 @@ public class ReservaFormServlet extends HttpServlet {
 		Long idCoche = Long.parseLong(request.getParameter("idCoche"));
 		String accion = "Realizar";
 		
-		if(DaoCoche.obtenerReservadoPorId(idCoche) == true) {
+		if (id != null) {
+			Reserva reserva = Globales.DAO_RESERVA.obtenerPorId(Long.parseLong(id));
+			accion = "Modificar";
+			
+			request.setAttribute("reserva", reserva);
+		} else if(Globales.DAO_COCHE.obtenerReservadoPorId(idCoche) == true) {
 			request.setAttribute("alertatexto", "No se ha podido realizar la reserva. El coche ya está reservado.");
 			request.setAttribute("alertanivel", "danger");
 			request.getRequestDispatcher("/admin/coches").forward(request, response);
 		}
-		
-		if (id != null) {
-			Reserva reserva = DaoReserva.obtenerPorId(Long.parseLong(id));
-			accion = "Modificar";
-			
-			request.setAttribute("reserva", reserva);
-		}
 
 		request.setAttribute("accion", accion);
 		request.setAttribute("idCoche", idCoche);
-		request.setAttribute("coches", DaoCoche.obtenerTodos());
+		request.setAttribute("coches", Globales.DAO_COCHE.obtenerTodos());
 		request.getRequestDispatcher("/WEB-INF/vistas/reservaFormulario.jsp").forward(request, response);
 		
 			
@@ -80,12 +72,12 @@ public class ReservaFormServlet extends HttpServlet {
 
 		try {
 			if(id == null || id.trim().length() == 0) {
-				Globales.DAO.setTrueReserva(idCoche);
-				DaoReserva.insertar(reserva);
+				Globales.DAO_COCHE.setTrueReserva(idCoche);
+				Globales.DAO_RESERVA.insertar(reserva);
 				accion = "realizada";
 			} else {
 				reserva.setId(Long.parseLong(id));
-				DaoReserva.modificar(reserva);
+				Globales.DAO_RESERVA.modificar(reserva);
 				accion = "modificada";
 			}
 			

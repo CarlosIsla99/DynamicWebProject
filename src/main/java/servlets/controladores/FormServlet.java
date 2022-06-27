@@ -25,7 +25,7 @@ public class FormServlet extends HttpServlet {
 		String accion = "Añadir";
 		
 		if (id != null) {
-			Coche coche = Globales.DAO.obtenerPorId(Long.parseLong(id));
+			Coche coche = Globales.DAO_COCHE.obtenerPorId(Long.parseLong(id));
 			accion = "Modificar";
 			
 			request.setAttribute("coche", coche);
@@ -63,12 +63,12 @@ public class FormServlet extends HttpServlet {
 		
 		try {
 			if(id == null || id.trim().length() == 0) {
-				Globales.DAO.insertar(coche);
+				Globales.DAO_COCHE.insertar(coche);
 				accion = "añadido";
 			} else {
 				coche.setId(Long.parseLong(id));
 				reservado = DaoCoche.obtenerReservadoPorId(Long.parseLong(id));
-				Globales.DAO.modificar(coche);
+				Globales.DAO_COCHE.modificar(coche);
 				accion = "modificado";
 			}
 			

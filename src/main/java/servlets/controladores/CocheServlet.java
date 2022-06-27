@@ -19,7 +19,7 @@ public class CocheServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Long id = Long.parseLong(request.getParameter("id"));
-		Coche coche = Globales.DAO.obtenerPorId(id);
+		Coche coche = Globales.DAO_COCHE.obtenerPorId(id);
 		
 		
 		request.setAttribute("coche", coche);

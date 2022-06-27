@@ -5,16 +5,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import servlets.dal.DaoReserva;
-import servlets.dal.DaoReservaMemoria;
 
 import java.io.IOException;
 
 @WebServlet("/admin/borrarReserva")
 public class CancelarReservaServlet extends HttpServlet {
 	
-	private static final long serialVersionUID = 1L;
-	private static final DaoReserva DAO = DaoReservaMemoria.getInstancia();
+	private static final long serialVersionUID = 1L;;
 
     public CancelarReservaServlet() {}
 
@@ -23,9 +20,9 @@ public class CancelarReservaServlet extends HttpServlet {
 		Long id = Long.parseLong(request.getParameter("id"));
 		String admin = request.getParameter("admin");
 		
-		Long idCoche = DAO.encontrarCochePorIdReserva(id);
-		Globales.DAO.setFalseWhenNoReserva(idCoche);
-		DAO.borrar(id);
+		Long idCoche = Globales.DAO_RESERVA.encontrarCochePorIdReserva(id);
+		Globales.DAO_COCHE.setFalseWhenNoReserva(idCoche);
+		Globales.DAO_RESERVA.borrar(id);
 		
 		
 		request.setAttribute("alertatexto", "Se ha cancelado la reserva");

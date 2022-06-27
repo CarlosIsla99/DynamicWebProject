@@ -31,7 +31,7 @@ public class RegisterServlet extends HttpServlet {
 		
 		Usuario usuario = new Usuario(null, email, contra1, tel, Roles.CLIENTE);
 		
-		if(usuario.getErrores().size() > 0 || (contra1.equals(contra2)) == false) {
+		if(usuario.getErrores().size() > 0 || (contra1.equalsIgnoreCase(contra2)) == false) {
 			request.setAttribute("alertatexto", "No se ha podido registrar. Revise los datos.");
 			request.setAttribute("alertanivel", "danger");			
 			request.setAttribute("usuario", usuario);
@@ -43,7 +43,9 @@ public class RegisterServlet extends HttpServlet {
 		}
 		
 		DAO.insertar(usuario);
-		response.sendRedirect("login");
+		request.setAttribute("alertatexto", "Se ha registrado su usuario.");
+		request.setAttribute("alertanivel", "success");
+		request.getRequestDispatcher("/WEB-INF/vistas//login.jsp").forward(request, response);
 
 	}
 
