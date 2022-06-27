@@ -53,7 +53,7 @@ public class DaoCocheMemoria implements DaoCoche {
 		coches.remove(id);	
 	}
 	
-	public boolean obtenerReservadoPorId(Long id) {
+	public boolean obtenerReservaPorId(Long id) {
 		
 		boolean reservado = false;
 		
@@ -64,8 +64,8 @@ public class DaoCocheMemoria implements DaoCoche {
 		}
 		
 		return reservado;
-
 	}
+	
 
 	@Override
 	public void setFalseWhenNoReserva(Long idCoche) {
@@ -87,6 +87,20 @@ public class DaoCocheMemoria implements DaoCoche {
 				coche.setReserva(true);;
 			}
 		}
+	}
+
+	@Override
+	public boolean comprobarMatricula(String matricula) {
+		
+		boolean existe = false;
+		
+		for(Coche coche: coches.values()) {
+			if(coche.getMatricula().trim().equals(matricula)) {
+				existe = true;;
+			}
+		}
+		
+		return existe;
 	}
 
 }

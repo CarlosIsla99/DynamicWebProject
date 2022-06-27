@@ -2,8 +2,6 @@ package servlets.controladores;
 
 import java.io.IOException;
 
-import servlets.dal.DaoUsuario;
-import servlets.dal.DaoUsuarioMemoria;
 import servlets.modelos.Usuario;
 import servlets.modelos.Usuario.Roles;
 import jakarta.servlet.ServletException;
@@ -15,7 +13,6 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
 	
-	private static final DaoUsuario DAO = DaoUsuarioMemoria.getInstancia();
 	private static final long serialVersionUID = 1587748451045724579L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,7 +39,16 @@ public class RegisterServlet extends HttpServlet {
 			return;
 		}
 		
-		DAO.insertar(usuario);
+		if(Globales.DAO_USUARIO.obtenerPorEmail(email) != null) {
+			request.setAttribute("alertatexto", "El email ya está registrado.");
+			request.setAttribute("alertanivel", "danger");			
+			request.setAttribute("usuario", usuario);
+			
+			request.getRequestDispatcher("/WEB-INF/vistas/register.jsp").forward(request, response);
+			return;
+		}
+		
+		Globales.DAO_USUARIO.insertar(usuario);
 		request.setAttribute("alertatexto", "Se ha registrado su usuario.");
 		request.setAttribute("alertanivel", "success");
 		request.getRequestDispatcher("/WEB-INF/vistas//login.jsp").forward(request, response);

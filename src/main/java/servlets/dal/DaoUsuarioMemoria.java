@@ -63,4 +63,5 @@ public class DaoUsuarioMemoria implements DaoUsuario {
 
 		return usuarios.values().parallelStream().filter(u -> u.getEmail().equals(email)).findFirst().orElse(null);
 	}
+	
 }

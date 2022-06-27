@@ -63,11 +63,22 @@ public class FormServlet extends HttpServlet {
 		
 		try {
 			if(id == null || id.trim().length() == 0) {
+				
+				if(Globales.DAO_COCHE.comprobarMatricula(matricula)) {
+					request.setAttribute("alertatexto", "No se ha podido añadir el coche. La matrícula ya existe.");
+					request.setAttribute("alertanivel", "danger");
+					
+					request.setAttribute("coche", coche);
+					request.getParameter("accion");
+					request.getRequestDispatcher("/WEB-INF/vistas/formulario.jsp").forward(request, response);
+					return;
+				}
+				
 				Globales.DAO_COCHE.insertar(coche);
 				accion = "añadido";
 			} else {
 				coche.setId(Long.parseLong(id));
-				reservado = DaoCoche.obtenerReservadoPorId(Long.parseLong(id));
+				reservado = DaoCoche.obtenerReservaPorId(Long.parseLong(id));
 				Globales.DAO_COCHE.modificar(coche);
 				accion = "modificado";
 			}

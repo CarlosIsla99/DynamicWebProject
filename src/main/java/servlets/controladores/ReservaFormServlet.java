@@ -28,7 +28,7 @@ public class ReservaFormServlet extends HttpServlet {
 			accion = "Modificar";
 			
 			request.setAttribute("reserva", reserva);
-		} else if(Globales.DAO_COCHE.obtenerReservadoPorId(idCoche) == true) {
+		} else if(Globales.DAO_COCHE.obtenerReservaPorId(idCoche) == true) {
 			request.setAttribute("alertatexto", "No se ha podido realizar la reserva. El coche ya está reservado.");
 			request.setAttribute("alertanivel", "danger");
 			request.getRequestDispatcher("/admin/coches").forward(request, response);

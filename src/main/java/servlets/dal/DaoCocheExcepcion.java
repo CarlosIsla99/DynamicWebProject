@@ -35,7 +35,7 @@ class DaoCocheExcepcion implements DaoCoche {
 	}
 
 	@Override
-	public boolean obtenerReservadoPorId(Long id) {
+	public boolean obtenerReservaPorId(Long id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -50,6 +50,12 @@ class DaoCocheExcepcion implements DaoCoche {
 	public void setTrueReserva(Long id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean comprobarMatricula(String matricula) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 
