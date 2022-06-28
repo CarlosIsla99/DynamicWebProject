@@ -27,7 +27,7 @@ public class Globales {
 			DAO_USUARIO = new DaoFabrica(tipo).getDaoUsuario();
 			DAO_RESERVA = new DaoFabrica(tipo).getDaoReserva();
 		} catch (IOException e) {
-			throw new DaoException("No se ha podido obtener la configuración");
+			throw new DaoException("No se ha podido obtener la configuraciÃ³n");
 		}
 	}
 }

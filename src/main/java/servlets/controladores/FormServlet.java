@@ -22,7 +22,7 @@ public class FormServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String id = request.getParameter("id");
-		String accion = "Añadir";
+		String accion = "Aï¿½adir";
 		
 		if (id != null) {
 			Coche coche = Globales.DAO_COCHE.obtenerPorId(Long.parseLong(id));
@@ -52,7 +52,7 @@ public class FormServlet extends HttpServlet {
 		Coche coche = new Coche(null, matricula, marca, modelo, color, potencia, cilindrada, reservado);
 		
 		if(coche.getErrores().size() > 0) {
-			request.setAttribute("alertatexto", "No se ha podido añadir el coche. Datos inválidos.");
+			request.setAttribute("alertatexto", "No se ha podido aÃ±adir el coche. Datos invÃ¡lidos.");
 			request.setAttribute("alertanivel", "danger");
 			
 			request.setAttribute("coche", coche);
@@ -65,7 +65,7 @@ public class FormServlet extends HttpServlet {
 			if(id == null || id.trim().length() == 0) {
 				
 				if(Globales.DAO_COCHE.comprobarMatricula(matricula)) {
-					request.setAttribute("alertatexto", "No se ha podido añadir el coche. La matrícula ya existe.");
+					request.setAttribute("alertatexto", "No se ha podido aï¿½adir el coche. La matrÃ­cula ya existe.");
 					request.setAttribute("alertanivel", "danger");
 					
 					request.setAttribute("coche", coche);
@@ -75,7 +75,7 @@ public class FormServlet extends HttpServlet {
 				}
 				
 				Globales.DAO_COCHE.insertar(coche);
-				accion = "añadido";
+				accion = "aï¿½adido";
 			} else {
 				coche.setId(Long.parseLong(id));
 				reservado = DaoCoche.obtenerReservaPorId(Long.parseLong(id));
@@ -87,7 +87,7 @@ public class FormServlet extends HttpServlet {
 			request.setAttribute("alertanivel", "success");
 			
 		} catch (Exception e) {
-			request.setAttribute("alertatexto", "La opción de " + accion + " no ha funcionado");
+			request.setAttribute("alertatexto", "La opciÃ³n de " + accion + " no ha funcionado");
 			request.setAttribute("alertanivel", "danger");
 		}
 			

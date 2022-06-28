@@ -10,9 +10,10 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/e6a50891da.js"></script>
 </head>
 <body>
-
+<header>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
   <a class="navbar-brand px-2" href="admin/coches">COCHES LOGO</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,7 +65,6 @@
 			</c:choose>
 		</ul>
 </nav>
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-6 mt-4">
@@ -76,3 +76,5 @@
 		</div>
 	</div>
 </div>
+</header>
+<main>

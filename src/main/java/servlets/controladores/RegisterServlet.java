@@ -33,14 +33,14 @@ public class RegisterServlet extends HttpServlet {
 			request.setAttribute("alertanivel", "danger");			
 			request.setAttribute("usuario", usuario);
 			
-			request.setAttribute("error", "Las contraseñas no coinciden");
+			request.setAttribute("error", "Las contraseï¿½as no coinciden");
 			
 			request.getRequestDispatcher("/WEB-INF/vistas/register.jsp").forward(request, response);
 			return;
 		}
 		
 		if(Globales.DAO_USUARIO.obtenerPorEmail(email) != null) {
-			request.setAttribute("alertatexto", "El email ya está registrado.");
+			request.setAttribute("alertatexto", "El email ya estÃ¡ registrado.");
 			request.setAttribute("alertanivel", "danger");			
 			request.setAttribute("usuario", usuario);
 			
