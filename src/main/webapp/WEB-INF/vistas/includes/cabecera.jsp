@@ -10,7 +10,7 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="js/bootstrap.bundle.min.js"></script>
-<script src="https://kit.fontawesome.com/e6a50891da.js"></script>
+<script src="https://kit.fontawesome.com/e6a50891da.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <header>
@@ -36,6 +36,11 @@
       <li class="nav-item active">
 		<div class="text-center">
 			<a class="nav-link mx-2" href="admin/formulario">Añadir un coche</a>
+		</div>
+      </li>
+      <li class="nav-item active">
+		<div class="text-center">
+			<a class="nav-link mx-2" href="admin/usuarios">Usuarios</a>
 		</div>
       </li>
       </c:if>
