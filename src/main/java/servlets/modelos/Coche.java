@@ -44,7 +44,7 @@ public class Coche {
 
 	public void setMatricula(String matricula) {
 		if (!Validaciones.validarMatricula(matricula)) {
-			errores.put("matricula", "Matrícula no válida");
+			errores.put("matricula", "Matrï¿½cula no vï¿½lida");
 		}
 		this.matricula = matricula;
 	}
@@ -66,7 +66,7 @@ public class Coche {
 
 	public void setModelo(String modelo) {
 		if(modelo == null || modelo.trim().length() == 0) {
-			errores.put("modelo", "El modelo no puede estar vacío");
+			errores.put("modelo", "El modelo no puede estar vacï¿½o");
 		}
 		this.modelo = modelo;
 	}
