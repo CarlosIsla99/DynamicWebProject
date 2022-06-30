@@ -44,7 +44,7 @@ public class Coche {
 
 	public void setMatricula(String matricula) {
 		if (!Validaciones.validarMatricula(matricula)) {
-			errores.put("matricula", "Matr�cula no v�lida");
+			errores.put("matricula", "Matrícula no válida");
 		}
 		this.matricula = matricula;
 	}
